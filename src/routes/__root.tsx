@@ -74,19 +74,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Arizona Car World — Premium Auto Detailing in Doha, Qatar" },
+      {
+        name: "description",
+        content:
+          "Arizona Car World — luxury auto detailing in Doha: Vertek PPF (up to 12-yr warranty), ceramic coating, premium tinting, polish & VIP wash.",
+      },
+      { name: "author", content: "Arizona Car World" },
+      { property: "og:title", content: "Arizona Car World" },
+      { property: "og:description", content: "Premium auto detailing in Doha, Qatar." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Tajawal:wght@400;500;700&display=swap",
       },
     ],
   }),
@@ -115,7 +121,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <ThemeProvider>
+        <I18nProvider>
+          <Outlet />
+        </I18nProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
