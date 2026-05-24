@@ -8,11 +8,11 @@ import g6 from "@/assets/gallery-6.jpg";
 
 const ITEMS = [
   { src: g1, alt: "Ceramic coating application", cls: "md:col-span-2 md:row-span-2" },
-  { src: g2, alt: "Luxury SUV PPF installation", cls: "" },
+  { src: g2, alt: "VERTEK PPF installation on luxury SUV", cls: "" },
   { src: g3, alt: "Premium window tinting", cls: "" },
-  { src: g4, alt: "Polished gold rim detail", cls: "" },
-  { src: g5, alt: "Luxury car interior detail", cls: "" },
-  { src: g6, alt: "Headlight polish luxury car", cls: "md:col-span-2" },
+  { src: g4, alt: "Polished gold rim and tire detail", cls: "" },
+  { src: g5, alt: "Luxury tire and wheel detailing", cls: "" },
+  { src: g6, alt: "Premium window tinting on luxury sedan", cls: "md:col-span-2" },
 ];
 
 export function Gallery() {
