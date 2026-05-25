@@ -11,15 +11,27 @@ export function Contact() {
       value: lang === "ar" ? BUSINESS.addressAr : BUSINESS.address,
       href: `https://maps.google.com/?q=${encodeURIComponent(BUSINESS.mapsQuery)}`,
     },
-    { icon: Phone, label: t("contact.phone"), value: BUSINESS.phoneDisplay, href: `tel:${BUSINESS.phone}` },
-    { icon: Instagram, label: t("contact.instagram"), value: BUSINESS.instagram, href: BUSINESS.instagramUrl },
+    {
+      icon: Phone,
+      label: t("contact.phone"),
+      value: BUSINESS.phoneDisplay,
+      href: `tel:${BUSINESS.phone}`,
+    },
+    {
+      icon: Instagram,
+      label: t("contact.instagram"),
+      value: BUSINESS.instagram,
+      href: BUSINESS.instagramUrl,
+    },
     { icon: Clock, label: t("contact.hours"), value: t("contact.hoursValue") },
   ];
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="section-padding reveal">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-12">
-          <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">{t("contact.eyebrow")}</div>
+          <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">
+            {t("contact.eyebrow")}
+          </div>
           <h2 className="text-4xl md:text-6xl">{t("contact.title")}</h2>
         </div>
 
@@ -33,7 +45,9 @@ export function Contact() {
                     <Icon className="h-4.5 w-4.5 text-gold" />
                   </div>
                   <div>
-                    <div className="text-[10px] uppercase tracking-widest text-foreground/60 mb-1">{it.label}</div>
+                    <div className="text-[10px] uppercase tracking-widest text-foreground/60 mb-1">
+                      {it.label}
+                    </div>
                     <div className="text-sm md:text-base text-foreground/90">{it.value}</div>
                   </div>
                 </div>
@@ -46,7 +60,12 @@ export function Contact() {
                 <div key={i}>{inner}</div>
               );
             })}
-            <a href={BUSINESS.whatsappUrl} target="_blank" rel="noreferrer" className="btn-luxury w-full">
+            <a
+              href={BUSINESS.whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-luxury w-full"
+            >
               <MessageCircle className="h-4 w-4" />
               {t("cta.whatsapp")}
             </a>

@@ -8,15 +8,19 @@ export function About() {
     { value: "1000+", label: t("about.stat3") },
   ];
   return (
-    <section id="about" className="section-padding">
+    <section id="about" className="section-padding reveal">
       <div className="mx-auto max-w-6xl">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">{t("about.eyebrow")}</div>
+            <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">
+              {t("about.eyebrow")}
+            </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl mb-6">
               <span className="gold-text">{t("about.title")}</span>
             </h2>
-            <p className="text-foreground/75 leading-relaxed text-base md:text-lg">{t("about.body")}</p>
+            <p className="text-foreground/75 leading-relaxed text-base md:text-lg">
+              {t("about.body")}
+            </p>
           </div>
           <div className="grid grid-cols-3 gap-4">
             {stats.map((s, i) => (

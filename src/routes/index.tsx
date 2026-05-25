@@ -23,7 +23,11 @@ export const Route = createFileRoute("/")({
           "Arizona Car World — luxury auto detailing in Doha: Vertek PPF (up to 12-yr warranty), ceramic coating, premium tinting, polish & VIP wash. Book now.",
       },
       { property: "og:title", content: "Arizona Car World — Premium Auto Detailing" },
-      { property: "og:description", content: "Vertek PPF, ceramic coating, premium tinting and showroom-grade detailing in Doha, Qatar." },
+      {
+        property: "og:description",
+        content:
+          "Vertek PPF, ceramic coating, premium tinting and showroom-grade detailing in Doha, Qatar.",
+      },
       { property: "og:type", content: "website" },
     ],
   }),
@@ -41,9 +45,9 @@ function Index() {
         <Pricing />
         <WhyChooseUs />
         <Warranty />
-        <Booking />
-        <Testimonials />
         <Gallery />
+        <Testimonials />
+        <Booking />
         <Contact />
       </main>
       <Footer />

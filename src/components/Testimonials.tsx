@@ -32,10 +32,12 @@ export function Testimonials() {
   const prev = () => setI((p) => (p - 1 + REVIEWS.length) % REVIEWS.length);
   const r = REVIEWS[i];
   return (
-    <section className="section-padding">
+    <section className="section-padding reveal">
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-12">
-          <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">{t("testimonials.eyebrow")}</div>
+          <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">
+            {t("testimonials.eyebrow")}
+          </div>
           <h2 className="text-4xl md:text-6xl">{t("testimonials.title")}</h2>
         </div>
         <div className="glass-strong rounded-3xl p-10 md:p-14 text-center relative">
@@ -50,7 +52,10 @@ export function Testimonials() {
           <div className="mt-6 text-sm uppercase tracking-widest text-gold">— {r.author}</div>
 
           <div className="flex items-center justify-center gap-4 mt-10">
-            <button onClick={prev} className="p-2 rounded-full border gold-border hover:bg-accent transition-all">
+            <button
+              onClick={prev}
+              className="p-2 rounded-full border gold-border hover:bg-accent transition-all"
+            >
               <ChevronLeft className="h-4 w-4 rtl:rotate-180" />
             </button>
             <div className="flex gap-2">
@@ -62,7 +67,10 @@ export function Testimonials() {
                 />
               ))}
             </div>
-            <button onClick={next} className="p-2 rounded-full border gold-border hover:bg-accent transition-all">
+            <button
+              onClick={next}
+              className="p-2 rounded-full border gold-border hover:bg-accent transition-all"
+            >
               <ChevronRight className="h-4 w-4 rtl:rotate-180" />
             </button>
           </div>
