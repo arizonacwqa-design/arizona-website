@@ -1,8 +1,5 @@
-/* Web fonts MUST be imported before any other CSS rules, or the browser silently
-   drops the @import and fonts fail to load. Playfair Display = headings, Inter = body.
-   This was previously missing — browser was falling back to system fonts which is
-   why typography looked inconsistent. */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
+/* Web fonts (Playfair Display + Inter) are loaded via <link rel="stylesheet"> in
+   src/routes/__root.tsx — more reliable than CSS @import and avoids render blocking. */
 
 @import "tailwindcss";
 @import "tw-animate-css";
@@ -66,6 +63,15 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchor targets get pushed below the fixed navbar so the section title isn't
+   hidden behind it when a #anchor link scrolls into view. */
+section[id] {
+  scroll-margin-top: 88px;
+}
+#home {
+  scroll-margin-top: 0;
+}
+
 body {
   overflow-x: hidden;
   background: var(--color-background);
@@ -93,29 +99,34 @@ h6,
 
 /* ---------- Component utility classes (referenced from JSX) ---------- */
 
+/* Glass surfaces MUST stay translucent. Using the solid --color-card token here
+   produced stark white panels in light mode and text became near-invisible.
+   These use explicit rgba so light/dark each get a proper see-through effect. */
 .glass {
-  background: var(--color-card);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+  background: rgba(255, 252, 245, 0.6);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
   border: 1px solid var(--color-border-default);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 40px rgba(120, 90, 40, 0.08);
 }
 
-/* Was used in 8 places but never defined — now a denser variant of .glass */
+/* Denser variant used by hero cards, footer wrap, booking form, etc. */
 .glass-strong {
-  background: var(--color-card);
+  background: rgba(255, 252, 245, 0.82);
   backdrop-filter: blur(28px) saturate(160%);
   -webkit-backdrop-filter: blur(28px) saturate(160%);
   border: 1px solid var(--color-border-default);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 20px 60px rgba(120, 90, 40, 0.14);
 }
 
 .dark .glass {
-  background: rgba(20, 20, 20, 0.55);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  background: rgba(20, 16, 12, 0.55);
+  border-color: rgba(200, 169, 107, 0.18);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 .dark .glass-strong {
   background: rgba(18, 14, 10, 0.78);
+  border-color: rgba(200, 169, 107, 0.22);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
 }
 

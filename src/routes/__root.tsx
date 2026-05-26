@@ -121,9 +121,16 @@ export const Route = createRootRouteWithContext<{
     ],
 
     links: [
-      // Preconnect to Google Fonts CDN so font request handshake happens early
+      // Preconnect to Google Fonts so the TLS handshake happens in parallel
+      // with HTML parsing — saves ~100ms on first paint.
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      // Load fonts via <link> (not CSS @import) for reliability + perf.
+      // display=swap means text shows in the fallback first, then swaps when web font loads.
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,

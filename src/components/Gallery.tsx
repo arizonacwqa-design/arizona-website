@@ -45,7 +45,7 @@ export function Gallery() {
   const { t } = useI18n();
 
   return (
-    <section className="section-padding reveal">
+    <section id="gallery" className="section-padding reveal">
       <div className="mx-auto max-w-7xl">
         <div className="text-center mb-12">
           <div className="text-xs uppercase tracking-[0.3em] text-gold mb-4">

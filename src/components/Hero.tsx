@@ -6,7 +6,7 @@ export function Hero() {
   const { t } = useI18n();
 
   return (
-    <section className="relative overflow-hidden min-h-screen flex items-center reveal">
+    <section id="home" className="relative overflow-hidden min-h-screen flex items-center reveal">
       {/* Background Image */}
       <img
         src={heroImage}
