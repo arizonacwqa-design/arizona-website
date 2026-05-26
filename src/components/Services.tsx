@@ -78,7 +78,7 @@ export function Services() {
             return (
               <div
                 key={i}
-                className="group glass rounded-2xl p-5 sm:p-6 transition-all duration-500 hover:-translate-y-2 hover:border-gold hover:shadow-[0_20px_60px_rgba(212,175,55,0.18)]"
+                className="group glass rounded-2xl p-5 sm:p-6 transition-all duration-500 hover:-translate-y-2 hover:border-gold hover:shadow-[0_20px_60px_rgba(200,169,107,0.22)]"
               >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5 bg-gradient-to-br from-gold/20 to-transparent border gold-border">
                   <Icon className="h-5 w-5 text-gold" />

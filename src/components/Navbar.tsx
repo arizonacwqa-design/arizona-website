@@ -46,19 +46,21 @@ export function Navbar() {
               scrolled ? "glass-strong" : "glass"
             }`}
           >
-            {/* Logo Brand Segment */}
-            <a href="#home" className="flex items-center gap-2 shrink-0">
+            {/* Logo Brand Segment — logo already contains the wordmark, no extra text */}
+            <a
+              href="#home"
+              className="flex items-center shrink-0"
+              aria-label="Arizona Car World — Home"
+            >
               <img
                 src={logo}
                 alt="Arizona Car World"
-                className="h-9 w-auto object-contain"
-                width={36}
-                height={36}
+                className="h-10 sm:h-12 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]"
+                width={150}
+                height={119}
+                fetchPriority="high"
+                decoding="async"
               />
-              <span className="hidden sm:inline font-display text-base tracking-wide">
-                <span className="gold-text font-medium">Arizona</span>
-                <span className="text-foreground/70 ms-1">Car World</span>
-              </span>
             </a>
 
             {/* Desktop Navigation */}

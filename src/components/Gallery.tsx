@@ -57,7 +57,7 @@ export function Gallery() {
           {ITEMS.map((it, i) => (
             <div
               key={i}
-              className={`relative overflow-hidden rounded-3xl group gold-border border transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_25px_70px_rgba(212,175,55,0.22)] ${it.cls}`}
+              className={`relative overflow-hidden rounded-3xl group gold-border border transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_25px_70px_rgba(200,169,107,0.28)] ${it.cls}`}
             >
               <img
                 src={it.src}

@@ -10,12 +10,14 @@ export function Footer() {
       <div className="mx-auto max-w-7xl glass-strong rounded-[2rem] p-8 md:p-14">
         <div className="grid md:grid-cols-3 gap-12">
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <img src={logo} alt="ACW" className="h-10 w-auto" width={40} height={40} />
-              <div className="font-display text-lg">
-                <span className="gold-text">Arizona</span>
-                <span className="text-foreground/70 ms-1">Car World</span>
-              </div>
+            <div className="mb-4">
+              <img
+                src={logo}
+                alt="Arizona Car World"
+                className="h-16 w-auto object-contain"
+                width={200}
+                height={159}
+              />
             </div>
             <p className="text-sm text-foreground/65 leading-relaxed">{t("footer.tag")}</p>
           </div>

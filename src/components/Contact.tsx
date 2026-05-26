@@ -42,7 +42,7 @@ export function Contact() {
               const inner = (
                 <div className="glass rounded-2xl p-5 flex items-start gap-4 hover:border-gold transition-all">
                   <div className="w-11 h-11 rounded-xl flex items-center justify-center bg-gradient-to-br from-gold/20 to-transparent border gold-border shrink-0">
-                    <Icon className="h-4.5 w-4.5 text-gold" />
+                    <Icon className="h-5 w-5 text-gold" />
                   </div>
                   <div>
                     <div className="text-[10px] uppercase tracking-widest text-foreground/60 mb-1">
