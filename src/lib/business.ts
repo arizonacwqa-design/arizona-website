@@ -79,5 +79,8 @@ export const PRICING: PriceRow[] = [
 ];
 
 export const SERVICE_OPTIONS = PRICING.flatMap((p) =>
-  p.items.map((it) => ({ value: `${p.category} — ${it.name}`, labelAr: `${p.categoryAr} — ${it.nameAr}` }))
+  p.items.map((it) => ({
+    value: `${p.category} — ${it.name}`,
+    labelAr: `${p.categoryAr} — ${it.nameAr}`,
+  })),
 );

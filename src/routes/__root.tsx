@@ -14,6 +14,8 @@ import type { QueryClient } from "@tanstack/react-query";
 
 import { ThemeProvider } from "@/lib/theme";
 import { I18nProvider } from "@/lib/i18n";
+import { SmoothScrollProvider } from "@/lib/smooth-scroll";
+import { ErrorBoundary } from "@/lib/error-boundary";
 
 import appCss from "../styles.css?url";
 
@@ -93,13 +95,17 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <I18nProvider>
-          <Outlet />
-        </I18nProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <I18nProvider>
+            <SmoothScrollProvider>
+              <Outlet />
+            </SmoothScrollProvider>
+          </I18nProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
   );
 }
 
@@ -118,9 +124,90 @@ export const Route = createRootRouteWithContext<{
       {
         title: "Arizona Car World",
       },
+      {
+        name: "description",
+        content:
+          "Arizona Car World — luxury auto detailing in Doha, Qatar. Vertek PPF (up to 12-yr warranty), ceramic coating, premium tinting, full car polish & VIP wash.",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        property: "og:site_name",
+        content: "Arizona Car World",
+      },
+      {
+        property: "og:title",
+        content: "Arizona Car World — Premium Auto Detailing in Doha, Qatar",
+      },
+      {
+        property: "og:description",
+        content:
+          "Vertek PPF, ceramic coating, premium tinting and showroom-grade detailing — crafted with precision at Arizona Car World.",
+      },
+      {
+        property: "og:image",
+        content: "/og-image.jpg",
+      },
+      {
+        property: "og:image:width",
+        content: "1200",
+      },
+      {
+        property: "og:image:height",
+        content: "630",
+      },
+      {
+        property: "og:url",
+        content: "/",
+      },
+      {
+        property: "og:locale",
+        content: "en_US",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        name: "twitter:title",
+        content: "Arizona Car World — Premium Auto Detailing",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Vertek PPF, ceramic coating, premium tinting and showroom-grade detailing in Doha, Qatar.",
+      },
+      {
+        name: "twitter:image",
+        content: "/og-image.jpg",
+      },
     ],
 
     links: [
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        href: "/favicon.png",
+      },
+      {
+        rel: "apple-touch-icon",
+        href: "/favicon.png",
+      },
       {
         rel: "stylesheet",
         href: appCss,

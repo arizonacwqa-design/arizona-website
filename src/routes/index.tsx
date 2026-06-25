@@ -1,8 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ErrorBoundary } from "@/lib/error-boundary";
+import { JsonLd } from "@/lib/jsonld";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Services } from "@/components/Services";
+import { ServiceShowcase } from "@/components/ServiceShowcase";
 import { Pricing } from "@/components/Pricing";
 import { WhyChooseUs } from "@/components/WhyChooseUs";
 import { Warranty } from "@/components/Warranty";
@@ -34,21 +37,27 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+function SectionBoundary({ children }: { children: React.ReactNode }) {
+  return <ErrorBoundary>{children}</ErrorBoundary>;
+}
+
 function Index() {
   return (
     <div className="min-h-screen">
+      <JsonLd />
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <Services />
-        <Pricing />
-        <WhyChooseUs />
-        <Warranty />
-        <Gallery />
-        <Testimonials />
-        <Booking />
-        <Contact />
+        <SectionBoundary><Hero /></SectionBoundary>
+        <SectionBoundary><About /></SectionBoundary>
+        <SectionBoundary><Services /></SectionBoundary>
+        <SectionBoundary><ServiceShowcase /></SectionBoundary>
+        <SectionBoundary><Pricing /></SectionBoundary>
+        <SectionBoundary><WhyChooseUs /></SectionBoundary>
+        <SectionBoundary><Warranty /></SectionBoundary>
+        <SectionBoundary><Gallery /></SectionBoundary>
+        <SectionBoundary><Testimonials /></SectionBoundary>
+        <SectionBoundary><Booking /></SectionBoundary>
+        <SectionBoundary><Contact /></SectionBoundary>
       </main>
       <Footer />
       <FloatingWhatsApp />

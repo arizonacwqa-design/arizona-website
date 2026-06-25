@@ -17,16 +17,19 @@ const en: Dict = {
   "cta.whatsapp": "WhatsApp Us",
   "hero.eyebrow": "Premium Auto Detailing — Doha, Qatar",
   "hero.title": "Where Every Vehicle Becomes a Masterpiece.",
-  "hero.subtitle": "Vertek PPF, ceramic coating, premium tinting and showroom-grade detailing — crafted with precision at Arizona Car World.",
+  "hero.subtitle":
+    "Vertek PPF, ceramic coating, premium tinting and showroom-grade detailing — crafted with precision at Arizona Car World.",
   "about.eyebrow": "About",
   "about.title": "Arizona Car World",
-  "about.body": "Located in the heart of Doha's industrial quarter, Arizona Car World is Qatar's destination for true automotive luxury. From paint protection films backed by 12-year warranties to flawless ceramic coatings and bespoke detailing, every service is delivered by certified technicians using world-class materials.",
+  "about.body":
+    "Located in the heart of Doha's industrial quarter, Arizona Car World is Qatar's destination for true automotive luxury. From paint protection films backed by 12-year warranties to flawless ceramic coatings and bespoke detailing, every service is delivered by certified technicians using world-class materials.",
   "about.stat1": "Years Warranty",
   "about.stat2": "Premium Services",
   "about.stat3": "Vehicles Protected",
   "services.eyebrow": "What We Do",
   "services.title": "Signature Services",
-  "services.subtitle": "A curated portfolio of detailing services engineered for discerning owners.",
+  "services.subtitle":
+    "A curated portfolio of detailing services engineered for discerning owners.",
   "pricing.eyebrow": "Investment",
   "pricing.title": "Transparent Pricing",
   "pricing.subtitle": "All prices in QAR. Choose Saloon or SUV.",
@@ -45,7 +48,8 @@ const en: Dict = {
   "why.4.body": "Up to 12 years on Vertek PPF Pro Plus protection.",
   "warranty.eyebrow": "Peace of Mind",
   "warranty.title": "Warranty Coverage",
-  "warranty.body": "Vertek PPF Pro Plus is backed by a 12-year warranty. Vertek PPF Pro carries a 10-year warranty. Every film, coating and finish is registered in your name from the day of installation.",
+  "warranty.body":
+    "Vertek PPF Pro Plus is backed by a 12-year warranty. Vertek PPF Pro carries a 10-year warranty. Every film, coating and finish is registered in your name from the day of installation.",
   "booking.eyebrow": "Reserve",
   "booking.title": "Book Your Appointment",
   "booking.subtitle": "Select a service and we'll confirm your slot on WhatsApp within minutes.",
@@ -85,10 +89,12 @@ const ar: Dict = {
   "cta.whatsapp": "تواصل واتساب",
   "hero.eyebrow": "تلميع وحماية فاخرة — الدوحة، قطر",
   "hero.title": "حيث تتحول كل سيارة إلى تحفة فنية.",
-  "hero.subtitle": "أفلام حماية فيرتك، طلاء سيراميك، تظليل بريميوم وتفصيل بمستوى المعارض — بدقة استثنائية في أريزونا كار وورلد.",
+  "hero.subtitle":
+    "أفلام حماية فيرتك، طلاء سيراميك، تظليل بريميوم وتفصيل بمستوى المعارض — بدقة استثنائية في أريزونا كار وورلد.",
   "about.eyebrow": "عن",
   "about.title": "أريزونا كار وورلد",
-  "about.body": "في قلب الحي الصناعي بالدوحة، نقدم تجربة لا مثيل لها في عالم العناية بالسيارات الفاخرة. من أفلام الحماية بضمان حتى 12 سنة إلى الطلاءات السيراميكية المثالية والتفصيل الراقي — كل خدمة يقدمها فنيون معتمدون باستخدام أرقى المواد العالمية.",
+  "about.body":
+    "في قلب الحي الصناعي بالدوحة، نقدم تجربة لا مثيل لها في عالم العناية بالسيارات الفاخرة. من أفلام الحماية بضمان حتى 12 سنة إلى الطلاءات السيراميكية المثالية والتفصيل الراقي — كل خدمة يقدمها فنيون معتمدون باستخدام أرقى المواد العالمية.",
   "about.stat1": "سنوات ضمان",
   "about.stat2": "خدمات بريميوم",
   "about.stat3": "سيارة محمية",
@@ -113,7 +119,8 @@ const ar: Dict = {
   "why.4.body": "حتى 12 سنة على حماية فيرتك برو بلس.",
   "warranty.eyebrow": "راحة بال",
   "warranty.title": "تغطية الضمان",
-  "warranty.body": "فيرتك PPF برو بلس بضمان 12 سنة، وفيرتك PPF برو بضمان 10 سنوات. كل فيلم وطلاء يُسجَّل باسمك من يوم التركيب.",
+  "warranty.body":
+    "فيرتك PPF برو بلس بضمان 12 سنة، وفيرتك PPF برو بضمان 10 سنوات. كل فيلم وطلاء يُسجَّل باسمك من يوم التركيب.",
   "booking.eyebrow": "احجز",
   "booking.title": "احجز موعدك",
   "booking.subtitle": "اختر خدمتك وسنؤكد موعدك عبر واتساب خلال دقائق.",
@@ -164,7 +171,11 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     const dir = lang === "ar" ? "rtl" : "ltr";
     document.documentElement.lang = lang;
     document.documentElement.dir = dir;
-    try { localStorage.setItem("lang", lang); } catch {}
+    try {
+      localStorage.setItem("lang", lang);
+    } catch {
+      /* SSR guard */
+    }
   }, [lang]);
 
   const value: Ctx = {
