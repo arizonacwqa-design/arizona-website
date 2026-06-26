@@ -30,3 +30,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Netlify build output
+.netlify/
+
+# AI Engineering System - backups
+.memory/backups/

@@ -1,0 +1,12 @@
+<type>(<scope>): <imperative description>
+
+Examples:
+  feat(booking): add date picker with time slot selection
+  fix(nav): correct mobile menu z-index overlap
+  refactor(hero): extract particle config to separate file
+  style(contact): update button colors per design spec
+  docs(memory): add ADR for knowledge base system
+  chore(deps): update TanStack Router to v1.168
+  perf(images): add lazy loading and WebP format
+
+Types: feat, fix, refactor, style, docs, chore, perf
