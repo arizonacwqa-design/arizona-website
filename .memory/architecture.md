@@ -5,21 +5,15 @@
 Client Browser
       |
       v
-Netlify Edge (CDN + Static Assets)
+Cloudflare Workers (SSR + Static Assets via @cloudflare/vite-plugin)
       |
       v
 TanStack Start (SSR + SPA)
   ├── TanStack Router (file-based routing)
   ├── TanStack Query (data fetching/caching)
   ├── Tailwind CSS v4 (utility-first styling)
-  ├── GSAP + Lenis (animations)
+  ├── framer-motion + Lenis (animations)
   └── Radix UI (accessible primitives)
-      |
-      v
-Cloudflare Workers (Server Runtime)
-  ├── SSR rendering (src/server.ts)
-  ├── API routes (future)
-  └── Edge caching
 ```
 
 ## Directory Layout

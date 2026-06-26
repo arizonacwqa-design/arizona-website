@@ -4,7 +4,7 @@
 - **Name**: arizona-website
 - **Type**: TanStack Start (React 19) web application
 - **Domain**: Arizona Window Cleaning & Pressure Washing
-- **Deployment**: Netlify (primary) + Cloudflare Workers (edge SSR)
+- **Deployment**: Cloudflare Workers (SSR + static assets via @cloudflare/vite-plugin)
 
 ## Tech Stack
 | Layer | Technology |
@@ -13,12 +13,12 @@
 | Routing | TanStack Router (file-based, auto-generated routeTree) |
 | Styling | Tailwind CSS v4 + `tw-animate-css` |
 | UI Library | Radix UI primitives (shadcn-style, 40+ components) |
-| Animations | GSAP 3.15 + Lenis 1.3 (smooth scroll) |
-| Forms | React Hook Form 7.71 + Zod 3.24 |
-| Charts | Recharts 2.15 |
-| Build | Vite 7 + @lovable.dev/vite-tanstack-config |
+| Animations | framer-motion 12.42 + Lenis (smooth scroll) |
+| Forms | React Hook Form + Zod |
+| Charts | Recharts |
+| Build | Vite 7 + @lovable.dev/vite-tanstack-config + @cloudflare/vite-plugin |
 | Server | Cloudflare Workers (via Wrangler) |
-| Package Mgr | npm (lockfile: package-lock.json) |
+| Package Mgr | npm (lockfile: package-lock.json) + bun (lockfile: bun.lock) |
 
 ## Routes (file-based)
 | Route | Component | Status |

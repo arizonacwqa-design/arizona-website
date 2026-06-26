@@ -1,6 +1,6 @@
 # Arizona Window Cleaning & Pressure Washing
 
-TanStack Start (React 19) website with SSR via Cloudflare Workers, deployed on Netlify.
+TanStack Start (React 19) website with SSR via Cloudflare Workers.
 
 ## Tech Stack
 
@@ -10,10 +10,9 @@ TanStack Start (React 19) website with SSR via Cloudflare Workers, deployed on N
 | Routing | TanStack Router (file-based) |
 | Styling | Tailwind CSS v4 |
 | UI | Radix UI primitives |
-| Animations | GSAP + Lenis |
-| Build | Vite 7 |
+| Animations | framer-motion + Lenis |
+| Build | Vite 7 + @cloudflare/vite-plugin |
 | Server | Cloudflare Workers |
-| Hosting | Netlify |
 
 ## Development
 
@@ -25,7 +24,7 @@ npm run lint    # Code quality
 
 ## Deployment
 
-Push to `main` triggers auto-deploy to Netlify. Cloudflare Workers handle SSR.
+SSR via Cloudflare Workers (`wrangler versions upload + deploy`).
 
 ## Routes
 
