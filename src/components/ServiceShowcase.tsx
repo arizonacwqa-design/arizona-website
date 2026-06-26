@@ -1,5 +1,5 @@
-import { useRef, useState } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { ErrorBoundary } from "@/lib/error-boundary";
 
 const SERVICES = [
@@ -36,25 +36,18 @@ export function ServiceShowcase() {
     offset: ["start end", "end start"],
   });
 
-  const activeIndex = useTransform(scrollYProgress, [0, 0.2, 0.4, 0.6, 0.8, 1], [0, 0, 1, 2, 3, 3]);
-  const [serviceIdx, setServiceIdx] = useState(0);
-  useMotionValueEvent(activeIndex, "change", (v) => setServiceIdx(Math.round(v)));
-
   return (
     <ErrorBoundary>
-      <section ref={sectionRef} className="relative lg:h-[400vh]">
-        <div className="lg:sticky lg:top-0 lg:h-screen overflow-hidden bg-background flex items-center min-h-[400px]">
+      <section ref={sectionRef} className="relative h-[300vh] lg:h-[500vh]">
+        <div className="sticky top-0 h-screen overflow-hidden bg-background flex items-center min-h-[400px]">
           <div className="mx-auto max-w-7xl w-full grid lg:grid-cols-2 gap-8 px-4 items-center h-full">
-            {/* Text content */}
-          <div className="relative z-10 flex items-center justify-center h-full py-10 lg:py-20">
-            <div className="w-full max-w-lg space-y-4">
+            <div className="relative z-10 flex items-center justify-center h-full py-10 lg:py-20">
+              <div className="w-full max-w-lg space-y-4">
                 {SERVICES.map((s, i) => (
-                  <ServiceSlide key={s.key} index={i} activeIndex={activeIndex} service={s} />
+                  <ServiceSlide key={s.key} index={i} total={SERVICES.length} progress={scrollYProgress} service={s} />
                 ))}
               </div>
             </div>
-
-            {/* Right: Reserved for custom image */}
             <ErrorBoundary>
               <div className="hidden lg:block h-full w-full min-h-[400px]" />
             </ErrorBoundary>
@@ -67,15 +60,36 @@ export function ServiceShowcase() {
 
 function ServiceSlide({
   index,
-  activeIndex,
+  total,
+  progress,
   service,
 }: {
   index: number;
-  activeIndex: ReturnType<typeof useTransform>;
+  total: number;
+  progress: ReturnType<typeof useTransform>;
   service: (typeof SERVICES)[number];
 }) {
-  const opacity = useTransform(activeIndex, (v) => (v === index ? 1 : 0));
-  const y = useTransform(activeIndex, (v) => (v === index ? 0 : v < index ? -20 : 20));
+  const rangeStart = index / total;
+  const rangeEnd = (index + 1) / total;
+  const fadeRange = 0.08;
+
+  const opacity = useTransform(progress, (v) => {
+    const entryStart = rangeStart - fadeRange;
+    const entryEnd = rangeStart + fadeRange;
+    const exitStart = rangeEnd - fadeRange;
+    const exitEnd = rangeEnd + fadeRange;
+
+    if (v < entryStart) return 0;
+    if (v < entryEnd) return (v - entryStart) / (entryEnd - entryStart);
+    if (v < exitStart) return 1;
+    if (v < exitEnd) return 1 - (v - exitStart) / (exitEnd - exitStart);
+    return 0;
+  });
+
+  const y = useTransform(progress, (v) => {
+    const mid = (rangeStart + rangeEnd) / 2;
+    return (v - mid) * 80;
+  });
 
   return (
     <motion.div style={{ opacity, y }} className="absolute inset-0 flex items-center">

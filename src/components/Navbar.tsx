@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { Link } from "@tanstack/react-router";
 import { Menu, X, Moon, Sun, Languages } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useTheme } from "@/lib/theme";
@@ -8,13 +9,13 @@ import logo from "@/assets/logo.png";
 import { Loader } from "./Loader";
 
 const NAV = [
-  { href: "#home", key: "nav.home" },
-  { href: "#about", key: "nav.about" },
-  { href: "#services", key: "nav.services" },
-  { href: "#pricing", key: "nav.pricing" },
-  { href: "#gallery", key: "nav.gallery" },
-  { href: "#booking", key: "nav.booking" },
-  { href: "#contact", key: "nav.contact" },
+  { to: "/", key: "nav.home" },
+  { to: "/about", key: "nav.about" },
+  { to: "/services", key: "nav.services" },
+  { to: "/services", key: "nav.pricing" },
+  { to: "/gallery", key: "nav.gallery" },
+  { to: "/booking", key: "nav.booking" },
+  { to: "/", key: "nav.contact", hash: "contact" },
 ];
 
 export function Navbar() {
@@ -52,7 +53,7 @@ export function Navbar() {
             }`}
           >
             {/* Logo Brand Segment */}
-            <a href="#home" className="flex items-center gap-2 shrink-0">
+            <Link to="/" className="flex items-center gap-2 shrink-0">
               <img
                 src={logo}
                 alt="Arizona Car World"
@@ -64,18 +65,19 @@ export function Navbar() {
                 <span className="gold-text font-medium">Arizona</span>
                 <span className="text-foreground/70 ms-1">Car World</span>
               </span>
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
               {NAV.map((n) => (
-                <a
-                  key={n.href}
-                  href={n.href}
+                <Link
+                  key={n.to + (n.hash ?? "")}
+                  to={n.to}
+                  hash={n.hash}
                   className="relative text-sm text-foreground/80 hover:text-foreground transition-colors after:absolute after:bottom-[-6px] after:left-0 after:h-px after:w-0 after:bg-gold after:transition-all hover:after:w-full"
                 >
                   {t(n.key)}
-                </a>
+                </Link>
               ))}
             </nav>
 
@@ -103,12 +105,12 @@ export function Navbar() {
               </button>
 
               <Magnetic strength={0.15}>
-                <a
-                  href="#booking"
+                <Link
+                  to="/booking"
                   className="hidden md:inline-flex btn-luxury !py-2 !px-4 text-sm font-medium"
                 >
                   {t("cta.book")}
-                </a>
+                </Link>
               </Magnetic>
 
               {/* Mobile Sidebar Hamburger Trigger */}
@@ -127,14 +129,15 @@ export function Navbar() {
             <div className="lg:hidden mt-2 glass-strong rounded-2xl p-4 border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.4)] animate-fade-up">
               <nav className="flex flex-col gap-1.5">
                 {NAV.map((n) => (
-                  <a
-                    key={n.href}
-                    href={n.href}
+                  <Link
+                    key={n.to + (n.hash ?? "")}
+                    to={n.to}
+                    hash={n.hash}
                     onClick={() => setOpen(false)}
                     className="px-4 py-3 rounded-xl hover:bg-accent/50 text-sm font-medium transition-all text-foreground/80 hover:text-foreground hover:translate-x-1"
                   >
                     {t(n.key)}
-                  </a>
+                  </Link>
                 ))}
 
                 <div className="h-px bg-white/5 my-2" />
