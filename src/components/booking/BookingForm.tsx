@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { insertBooking, type BookingInsert } from "@/lib/bookingService";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 type FormData = {
   name: string;
@@ -159,17 +160,11 @@ export function BookingForm({ vehicleType: initVtype, serviceSummary, totalPrice
 
       <div className="flex gap-3 justify-center pt-2">
         {onBack && (
-          <button type="button" onClick={onBack} className="btn-ghost-luxury !py-2.5 text-sm">
-            Back
-          </button>
+          <MagneticButton variant="outline" onClick={onBack}>Back</MagneticButton>
         )}
-        <button
-          type="submit"
-          disabled={sending}
-          className="btn-luxury !py-2.5 text-sm disabled:opacity-50"
-        >
+        <MagneticButton variant="primary" type="submit" disabled={sending}>
           {sending ? "Booking..." : "Confirm Booking"}
-        </button>
+        </MagneticButton>
       </div>
     </form>
   );

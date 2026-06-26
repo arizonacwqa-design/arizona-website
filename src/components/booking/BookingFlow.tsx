@@ -3,6 +3,7 @@ import { PackageCards, type PackageSelection } from "./PackageCards";
 import { AddOnsGrid, addonPrice } from "./AddOnsGrid";
 import { BookingForm } from "./BookingForm";
 import { useI18n } from "@/lib/i18n";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 export function BookingFlow({ onClose }: { onClose: () => void }) {
   const { lang } = useI18n();
@@ -73,14 +74,9 @@ export function BookingFlow({ onClose }: { onClose: () => void }) {
             ))}
           </div>
           <div className="flex justify-end pt-2">
-            <button
-              type="button"
-              disabled={!pkg}
-              onClick={() => setStep(1)}
-              className="btn-luxury !py-2.5 text-sm disabled:opacity-40"
-            >
+            <MagneticButton variant="primary" disabled={!pkg} onClick={() => setStep(1)}>
               Next — {total} QAR
-            </button>
+            </MagneticButton>
           </div>
         </div>
       )}
@@ -94,12 +90,8 @@ export function BookingFlow({ onClose }: { onClose: () => void }) {
             <span className="text-[#C9A84C] font-semibold">{total} QAR</span>
           </div>
           <div className="flex gap-3 justify-end pt-2">
-            <button type="button" onClick={() => setStep(0)} className="btn-ghost-luxury !py-2.5 text-sm">
-              Back
-            </button>
-            <button type="button" onClick={() => setStep(2)} className="btn-luxury !py-2.5 text-sm">
-              Next
-            </button>
+            <MagneticButton variant="outline" onClick={() => setStep(0)}>Back</MagneticButton>
+            <MagneticButton variant="primary" onClick={() => setStep(2)}>Next</MagneticButton>
           </div>
         </div>
       )}

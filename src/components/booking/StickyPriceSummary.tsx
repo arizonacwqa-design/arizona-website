@@ -1,3 +1,5 @@
+import { MagneticButton } from "@/components/ui/MagneticButton";
+
 export function StickyPriceSummary({
   count,
   total,
@@ -18,9 +20,9 @@ export function StickyPriceSummary({
           {count} {count === 1 ? "service" : "services"} selected
         </span>
         <span className="text-lg font-display text-[#C9A84C]">Total: {total} QAR</span>
-        <button type="button" onClick={onProceed} className="btn-luxury !py-2.5 text-sm">
+        <MagneticButton variant="primary" onClick={onProceed}>
           Proceed to Book →
-        </button>
+        </MagneticButton>
       </div>
     </div>
   );

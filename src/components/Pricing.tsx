@@ -3,13 +3,10 @@ import { motion } from "framer-motion";
 import { PRICING } from "@/lib/business";
 import { useI18n } from "@/lib/i18n";
 import { ShieldCheck } from "lucide-react";
-import { Link } from "@tanstack/react-router";
 import { Reveal, staggerContainer, staggerItem } from "@/lib/reveal";
-import { Magnetic } from "@/lib/magnetic";
 import { BookingFlow } from "./booking/BookingFlow";
 import { CustomizeBuilder } from "./booking/CustomizeBuilder";
-
-const PPF_IDS = ["vertek-pro-plus", "vertek-pro"];
+import { MagneticButton } from "./ui/MagneticButton";
 
 export function Pricing() {
   const { t, lang } = useI18n();
@@ -23,7 +20,6 @@ export function Pricing() {
     }
   }, [activeFlow]);
 
-  const isPpf = (id: string) => PPF_IDS.includes(id);
   return (
     <Reveal>
       <section id="pricing" className="section-padding">
@@ -87,30 +83,20 @@ export function Pricing() {
                     </li>
                   ))}
                 </ul>
-                {isPpf(cat.id) ? (
-                  <div className="flex flex-col sm:flex-row gap-2 mt-6">
-                    <button
-                      type="button"
-                      onClick={() => setActiveFlow(activeFlow?.mode === "guided" ? null : { mode: "guided", cardId: cat.id })}
-                      className="flex-1 btn-luxury !py-3 text-sm text-center"
-                    >
-                      Book Now
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setActiveFlow(activeFlow?.mode === "custom" ? null : { mode: "custom", cardId: cat.id })}
-                      className="flex-1 rounded-[50px] border border-[#C9A84C] text-[#C9A84C] !py-3 text-sm font-medium text-center transition-all duration-300 hover:bg-[#C9A84C]/10"
-                    >
-                      Customize
-                    </button>
-                  </div>
-                ) : (
-                  <Magnetic strength={0.15}>
-                    <Link to="/booking" className="btn-ghost-luxury mt-6 w-full !py-3 text-sm block text-center">
-                      {t("cta.book")}
-                    </Link>
-                  </Magnetic>
-                )}
+                <div className="flex flex-col sm:flex-row gap-2 mt-6">
+                  <MagneticButton
+                    variant="primary"
+                    onClick={() => setActiveFlow(activeFlow?.mode === "guided" ? null : { mode: "guided", cardId: cat.id })}
+                  >
+                    Book Now
+                  </MagneticButton>
+                  <MagneticButton
+                    variant="outline"
+                    onClick={() => setActiveFlow(activeFlow?.mode === "custom" ? null : { mode: "custom", cardId: cat.id })}
+                  >
+                    Customize
+                  </MagneticButton>
+                </div>
               </motion.div>
             ))}
           </motion.div>
