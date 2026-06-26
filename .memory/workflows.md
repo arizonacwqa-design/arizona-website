@@ -23,6 +23,39 @@ This 15-step pipeline governs ALL work in this repository. Every task must follo
 15. PRODUCE REPORT        — Final report with all required sections
 ```
 
+## Failure Recovery Protocol
+
+If a deployment, workflow, or any operation fails — follow this 7-step protocol:
+
+```
+ 1. READ LOGS            — Collect all error output, stack traces, status codes
+ 2. IDENTIFY ROOT CAUSE  — Determine exact failure point and underlying reason
+ 3. SUGGEST FIX          — Propose specific, actionable fix with expected outcome
+ 4. ASK BEFORE APPLYING  — Present fix to user; do not apply without approval
+ 5. APPLY FIX (approved) — Execute the fix in a reversible manner
+ 6. RE-TEST SYSTEM       — Re-run the failed operation; verify full recovery
+ 7. REPORT RESOLUTION    — Document cause, fix, and verification in changelog
+```
+
+### Failure Escalation
+If the same failure repeats after applying a fix:
+
+1. **Escalate with detailed analysis** — provide:
+   - Full timeline of failure + attempted fix
+   - Log excerpts at each failure point
+   - System state (recent changes, env diffs, dependency versions)
+   - Correlation analysis (what changed between first and second failure)
+2. **Provide alternative solutions** (minimum 2):
+   - Option A: Different approach to the same fix
+   - Option B: Workaround that avoids the failing path
+   - Option C: Architectural change to eliminate the root cause
+3. Document the repeated failure in `lessons.md` and `failed-patterns/`
+
+### Protocol Integration
+- The protocol triggers at pipeline step 10 (VALIDATE) or step 11 (TEST) if checks fail
+- Repeated failures must be recorded in `failed-patterns/` with full root cause
+- Every failure recovery must produce a changelog entry with cause, fix, and re-test results
+
 ## Report Requirements
 
 Every task's final report MUST include:

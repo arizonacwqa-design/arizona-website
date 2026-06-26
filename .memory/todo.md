@@ -11,6 +11,7 @@
 ## Current Priorities
 
 ### [x] Initialize AI Engineering System
+- [x] Add Failure Recovery Protocol with escalation path (7-step) across workflows.md, deployment.md, safety.md, dev-deploy.md
 - [x] Upgrade dev workflow to 15-step execution pipeline with approval gate and report requirements
 - [x] Create knowledge base: 5 sub-dirs, INDEX.md, 17 files across workflows/templates/examples/patterns
 - [x] Create rules system: development.md, git.md, deployment.md, n8n.md, safety.md, quality.md

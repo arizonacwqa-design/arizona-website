@@ -39,8 +39,14 @@ Before executing any change that could impact system stability — per the 15-st
 - Never commit large files (binaries, node_modules, build output)
 - Always review `git diff` before staging and `git diff --cached` before committing
 
+## Failure Recovery
+When any deployment, workflow, or operation fails — follow the 7-step Failure Recovery Protocol in `.memory/workflows.md`:
+1. Read logs → 2. Identify root cause → 3. Suggest fix → 4. Ask before applying → 5. Apply if approved → 6. Re-test → 7. Report resolution
+
+If the same failure repeats: escalate with full analysis and provide 2+ alternative solutions.
+
 ## Procedural Safety
 - Work in logical, reversible increments — each step should be independently revertible
 - After each increment: verify system state before proceeding
-- If a step fails: stop, assess, document in `lessons.md`, then proceed with correction
+- If a step fails: stop, apply Failure Recovery Protocol (`.memory/workflows.md`), then proceed
 - When uncertain: ask rather than assume — never guess

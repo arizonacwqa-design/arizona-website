@@ -39,6 +39,18 @@ Nodes:
 - [ ] Add health check endpoint that verifies both Netlify and Worker are live
 - [ ] Add automated rollback on deploy failure detection
 
+## Failure Recovery
+If any step fails, follow the 7-step Failure Recovery Protocol (`.memory/workflows.md`):
+1. Read deploy logs (Netlify dashboard or `railway logs`)
+2. Identify root cause (build error, missing env var, worker timeout)
+3. Suggest fix (see Common Failure Patterns in `rules/deployment.md`)
+4. Ask before applying
+5. Apply fix if approved
+6. Re-deploy and verify
+7. Report resolution in `.memory/changelog.md`
+
+For repeated failures: escalate with timeline, logs, and 2+ alternative solutions.
+
 ## Usage Guide
 1. `git status` — verify working tree state
 2. `npm run lint` — ensure lint is clean
@@ -48,4 +60,4 @@ Nodes:
 6. `git push origin main` — triggers Netlify auto-deploy
 7. Monitor Netlify deploy log at app.netlify.com
 8. Visit production URL and verify all routes render
-9. If issues: Netlify Deploy History → Publish previous deploy
+9. If issues: apply Failure Recovery Protocol → Netlify Deploy History → Publish previous deploy

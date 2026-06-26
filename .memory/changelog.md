@@ -10,6 +10,11 @@ Types: Added | Changed | Deprecated | Removed | Fixed | Security
 ## [Unreleased]
 
 ### Added
+- Failure Recovery Protocol: 7-step process for deployment/workflow failures with escalation path for repeated failures
+  - `.memory/workflows.md` — Full protocol definition + escalation requirements
+  - `rules/deployment.md` — Common failure patterns table (build, worker, env, Railway)
+  - `rules/safety.md` — Updated procedural safety to reference protocol
+  - `knowledge/workflows/dev-deploy.md` — Failure recovery section in usage guide
 - Knowledge base system with 6 directories and 17 files
   - `knowledge/INDEX.md` — Governance rules for knowledge base usage
   - `knowledge/workflows/` — 3 workflow entries (dev-deploy, n8n-backup, n8n-lead-capture)

@@ -46,6 +46,34 @@
 4. [ ] No hardcoded credentials in code
 5. [ ] Railway project is linked to correct directory
 
+## Failure Recovery
+
+If a deployment or workflow fails, follow the 7-step Failure Recovery Protocol in `.memory/workflows.md`:
+
+1. **Read logs** — Netlify deploy logs, Cloudflare Worker logs, Railway logs
+2. **Identify root cause** — Build error? Env var missing? Worker timeout? Config invalid?
+3. **Suggest fix** — Specific, actionable correction
+4. **Ask before applying** — Present fix to user
+5. **Apply fix** — Execute in reversible manner (backup first)
+6. **Re-test system** — Re-deploy or re-run the workflow
+7. **Report resolution** — Document in `.memory/changelog.md`
+
+### Common Failure Patterns
+| Symptom | Likely Cause | First Fix |
+|---------|-------------|-----------|
+| Build fails (Netlify) | Missing dep, Node version mismatch | Check `netlify.toml` Node version, run `npm install` |
+| Build fails (local) | CRLF lint errors, type errors | `npm run format`, fix type errors |
+| Worker timeout | SSR too slow, infinite loop | Check `src/server.ts`, optimize rendering |
+| 404 on routes | Netlify redirects missing | Check `netlify.toml` redirect rules |
+| Env var missing | Not set in platform dashboard | Set var in Netlify/Cloudflare/Railway dashboard |
+| Railway deploy fails | Config mismatch, expired token | `railway status`, re-authenticate |
+
+### Repeated Failure Escalation
+If the same failure occurs after applying a fix:
+1. Provide full timeline, logs, and system state
+2. Offer 2+ alternative solutions
+3. Document in `lessons.md` and `knowledge/failed-patterns/`
+
 ## Rollback Procedures
 - **Netlify**: Deploy History → select previous deploy → "Publish deploy"
 - **Cloudflare**: `wrangler rollback` to previous version

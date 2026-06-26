@@ -30,6 +30,16 @@
   - Memory always reflects real repo state
   - Backups don't pollute the repo
 
+### 2026-06-27: Added 7-step Failure Recovery Protocol with escalation path
+- **Status**: Accepted
+- **Context**: Pipeline steps 10-11 (validate, test) can fail, but there was no defined recovery procedure. Failures were handled ad-hoc with no log analysis, root cause tracking, or escalation for repeated issues.
+- **Decision**: Added Failure Recovery Protocol to `.memory/workflows.md`: Read logs → Identify root cause → Suggest fix → Ask before applying → Apply if approved → Re-test → Report resolution. For repeated failures: escalate with full analysis and 2+ alternative solutions. Common failure patterns documented in `rules/deployment.md`.
+- **Consequences**:
+  - Every failure now has a structured recovery path
+  - Repeated failures get escalated with alternatives instead of retrying same fix
+  - Root causes documented in lessons.md and failed-patterns/ for future prevention
+  - Integration with pipeline steps 10-11 means recovery is always gated by approval
+
 ### 2026-06-27: Adopted 15-step execution pipeline as universal workflow
 - **Status**: Accepted
 - **Context**: Previous 7-step workflow was underspecified — missing pre-work (read rules, search knowledge, analyze repo, identify impacted files), missing planning/approval gate, missing validation, testing, and report generation requirements.
