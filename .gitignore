@@ -36,3 +36,6 @@ dist-ssr
 
 # AI Engineering System - backups
 .memory/backups/
+
+# Environment variables
+.env

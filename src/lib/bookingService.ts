@@ -1,6 +1,5 @@
-const SUPABASE_URL = "https://vdjhwmdzbjztiqhyrmai.supabase.co";
-const SUPABASE_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkamh3bWR6Ymp6dGlxaHlybWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyMDYwMTAsImV4cCI6MjA5NDc4MjAxMH0.Xv-iATQ3g5FWlUclpE2QMw-aOqXyB-zwDm8dNT9l6tw";
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL ?? "https://your-project-id.supabase.co";
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY ?? "your-anon-key-here";
 
 export type BookingInsert = {
   customer_name: string;

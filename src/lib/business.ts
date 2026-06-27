@@ -1,15 +1,20 @@
 // DO NOT MODIFY — exact business details
+const businessAddress = import.meta.env.VITE_COMPANY_ADDRESS ?? "";
+const businessPhone = import.meta.env.VITE_COMPANY_PHONE ?? "";
+const businessInstagram = import.meta.env.VITE_COMPANY_INSTAGRAM ?? "";
+const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER ?? "";
+
 export const BUSINESS = {
-  name: "Arizona Car World",
+  name: import.meta.env.VITE_COMPANY_NAME ?? "Arizona Car World",
   nameAr: "أريزونا كار وورلد",
-  address: "Souq Al Qalh East Industrial Road, Doha, Qatar",
-  addressAr: "سوق القلح، الطريق الصناعي الشرقي، الدوحة، قطر",
-  phone: "+97477400041",
-  phoneDisplay: "+974 7740 0041",
-  instagram: "@Arizona.cw",
-  instagramUrl: "https://instagram.com/Arizona.cw",
-  whatsappUrl: "https://wa.me/97477400041",
-  mapsQuery: "Souq Al Qalh East Industrial Road, Doha, Qatar",
+  address: businessAddress,
+  addressAr: "",
+  phone: businessPhone,
+  phoneDisplay: businessPhone,
+  instagram: businessInstagram,
+  instagramUrl: businessInstagram ? `https://instagram.com/${businessInstagram.replace("@", "")}` : "",
+  whatsappUrl: whatsappNumber ? `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, "")}` : "",
+  mapsQuery: businessAddress,
 } as const;
 
 export type PriceRow = {

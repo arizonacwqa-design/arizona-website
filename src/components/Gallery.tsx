@@ -160,17 +160,17 @@ export function Gallery() {
               {ITEMS.map((it, i) => (
                 <motion.div key={i} variants={staggerItem}>
                   <TiltCard
-                    className={`relative overflow-hidden rounded-3xl group gold-border border transition-all duration-700 hover:shadow-[0_25px_70px_rgba(212,175,55,0.22)] ${it.cls}`}
+                    className={`relative overflow-hidden rounded-3xl group gold-border border transition-all duration-700 hover:shadow-[0_25px_70px_rgba(212,175,55,0.22)] bg-[#1A1A1A] ${it.cls}`}
                     onClick={() => openLightbox(i)}
                   >
                     <img
                       src={it.src}
                       alt={it.alt}
                       loading="lazy"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 brightness-125"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 lg:opacity-0 transition-opacity duration-500 touch-show" />
-                    <div className="absolute bottom-3 left-3 text-xs text-white/90 font-medium opacity-0 group-hover:opacity-100 lg:opacity-0 transition-opacity duration-500 translate-y-2 group-hover:translate-y-0 touch-show">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-3 left-3 right-3 text-xs text-white/90 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-2 group-hover:translate-y-0">
                       {it.alt}
                     </div>
                   </TiltCard>

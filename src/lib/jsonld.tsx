@@ -8,9 +8,9 @@ export function JsonLd() {
     alternateName: BUSINESS.nameAr,
     description:
       "Luxury auto detailing in Doha, Qatar. Vertek PPF, ceramic coating, premium tinting, polish & VIP wash.",
-    url: "https://arizonacarworld.com",
+    url: import.meta.env.VITE_SITE_URL ?? "https://your-site.com",
     telephone: BUSINESS.phone,
-    email: "info@arizonacarworld.com",
+    email: import.meta.env.VITE_CONTACT_EMAIL ?? "info@your-shop.com",
     address: {
       "@type": "PostalAddress",
       streetAddress: BUSINESS.address.split(",")[0],
@@ -31,7 +31,7 @@ export function JsonLd() {
         closes: "20:00",
       },
     ],
-    image: "https://arizonacarworld.com/og-image.jpg",
+    image: `${import.meta.env.VITE_SITE_URL ?? "https://your-site.com"}/og-image.jpg`,
     priceRange: "$$$",
     sameAs: [BUSINESS.instagramUrl],
     hasOfferCatalog: {
