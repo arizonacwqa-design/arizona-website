@@ -1,4 +1,6 @@
-import { supabase } from "./supabaseClient";
+const SUPABASE_URL = "https://vdjhwmdzbjztiqhyrmai.supabase.co";
+const SUPABASE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkamh3bWR6Ymp6dGlxaHlybWFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyMDYwMTAsImV4cCI6MjA5NDc4MjAxMH0.Xv-iATQ3g5FWlUclpE2QMw-aOqXyB-zwDm8dNT9l6tw";
 
 export type BookingInsert = {
   customer_name: string;
@@ -15,8 +17,20 @@ export type BookingInsert = {
 };
 
 export async function insertBooking(data: BookingInsert) {
-  const { error } = await supabase.from("bookings").insert([data]);
-  if (error) throw error;
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/bookings`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+      Prefer: "return=minimal",
+    },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Supabase ${res.status}: ${text}`);
+  }
 }
 
 const CACHE = new Map<string, { data: { service_name: string; price: number }[]; ts: number }>();
@@ -26,13 +40,16 @@ async function fetchServices(filter: string): Promise<{ service_name: string; pr
   const cached = CACHE.get(filter);
   if (cached && Date.now() - cached.ts < CACHE_TTL) return cached.data;
 
-  const { data, error } = await supabase
-    .from("services")
-    .select("service_name, price")
-      .or(`service_name.ilike.%${filter}%`)
-    .limit(20);
-
-  if (error || !data || data.length === 0) return [];
+  const qs = `select=service_name,price&or=(service_name.ilike.%${encodeURIComponent(filter)}%)&limit=20`;
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/services?${qs}`, {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+    },
+  });
+  if (!res.ok) return [];
+  const data: { service_name: string; price: number }[] = await res.json();
+  if (!data || data.length === 0) return [];
   CACHE.set(filter, { data, ts: Date.now() });
   return data;
 }

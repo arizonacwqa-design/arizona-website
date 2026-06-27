@@ -67,8 +67,10 @@ export function BookingForm({ vehicleType: initVtype, serviceSummary, totalPrice
         setDone(false);
         onComplete();
       }, 3000);
-    } catch {
-      setError("Something went wrong. Please call us directly.");
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : JSON.stringify(err, Object.getOwnPropertyNames(err));
+      console.error("Supabase insert error:", err);
+      setError(msg || "Something went wrong");
     } finally {
       setSending(false);
     }
