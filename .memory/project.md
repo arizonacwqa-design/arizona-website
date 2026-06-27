@@ -50,3 +50,18 @@
 - `vite.config.ts` — Lovable config + Netlify plugin, server entry override to `src/server.ts`
 - `tsconfig.json` — Strict mode, ES2022, Bundler module resolution, `@/*` path alias
 - `eslint.config.js` — ESLint 9 flat config with Prettier plugin
+
+## Git Remotes & Backup Workflow
+
+| Repo | Remote | Purpose |
+|------|--------|---------|
+| **Primary** | `github.com/arizonacwqa-design/arizona-website` | Development, testing, daily work |
+| **Backup** | `github.com/mrsaifali-7898/arizona-website` | Clean copy after testing, no secrets |
+
+**Workflow:**
+1. All changes made in `arizonacwqa-design` repos first
+2. Test + verify (build passes, no errors)
+3. Push to `arizonacwqa-design` (primary)
+4. Then force-push clean copy to `mrsaifali-7898` (backup)
+
+**Backup PAT:** Classic token stored in system (scopes: `repo`)
